@@ -26,9 +26,13 @@ export default {
     };
   },
   methods: {
-    submit(value) {
+    async submit(value) {
       this.username = value.username;
       this.password = value.pwd;
+      const response = await this.axios.get('http://localhost:3000/api/user/5bdf83e86326c030104f4ee5');
+      this.username = response.data.user.name;
+      window.sessionStorage.user = this.username;
+      this.$router.push('Products');
     },
   },
 };
